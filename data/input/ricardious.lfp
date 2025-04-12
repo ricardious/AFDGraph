@@ -1,0 +1,15 @@
+{@
+    Numeros: {
+        descripcion: "Ricardious Test",
+        estados: [S0, S1, S2, S3],
+        alfabeto: ["digit", "."],
+        inicial: S0,
+        finales: [S1, S3],
+        transiciones: {
+            S0 = ("digit" -> S2),
+            S1 = ("digit" -> S1, "." -> S1),
+            S2 = ("digit" -> S3),
+            S3 = ("digit" -> S3)
+        }
+    },#
+}

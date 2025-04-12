@@ -1,0 +1,43 @@
+{
+    AFD3: {
+        descripcion: "Cadenas de operadores",
+        estados: [S0, S1, #S2, S3, S4],
+        alfabeto: ["+", "-", #"*", "/"],
+        inicial: S0,
+        finales: [S3, S4],
+        transiciones: {
+            S0 = ("+" -> S1, "-" -> S2),$
+            S1 = ("*" -> S1, "/" -> S3)!,#
+            S2 = ("*" -> S4, "/" -> S2)~,@
+            S3 = ("+" -> S1),2
+            S4 = ("-" -> S2)&
+        }
+    },
+    AFD4: {/?
+        descripcion: "Cadenas de identificadores",
+        estados: [S0, S1, S2, S3],
+        alfabeto: ["a", "b", "c", "_"],
+        inicial: S0,
+        finales: [S1, S2, S3],
+        transiciones: {
+            S0 = ("a" -> S1, "b" -> S2, "_" -> S3),
+            S1 = ("c" -> S1, "_" -> S2)@,
+            S2 = ("a" -> S3@, "b" -> S0)%,
+            S3 = ("c" -> S@1, "_" -> S3)#*
+        }
+    },
+    numero2: {
+        descripcion: "Números hexadecimales",
+        estados: [S0, S1, S2, S3, S4],
+        alfabeto: ["digit", "A", "B", "C", "D", "E", "F"],
+        inicial: S0,
+        finales: [S2@, S4],
+        transiciones: {
+            S0 = ("digit" -> S1),
+            S1 = ("digit" -> S1, "A" -> S2, "B" -> S2)>,
+            S2 = ("C" -> S3)@@@,
+            S3 = ("D" -> S4, "E" -> S3)$,
+            S4 = ("F" -> S4)&
+        +}
+    }
+}
